@@ -86,9 +86,12 @@
     });
 
     // Le stesse esclusioni dello script di sync, altrimenti la lista dal vivo
-    // e quella del build direbbero cose diverse.
+    // e quella del build direbbero cose diverse. Fuori anche il repository che
+    // tiene il costruito di questo sito: e' pubblico come gli altri, ma non e'
+    // un progetto, e' questa pagina.
+    var FUORI = { nerln: 1, "nerln.github.io": 1 };
     function eDaMostrare(r) {
-      return !r.private && !r.archived && !r.fork && r.name !== owner;
+      return !r.private && !r.archived && !r.fork && r.name !== owner && !FUORI[r.name];
     }
 
     function riga(r) {
