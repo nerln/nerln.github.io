@@ -1,0 +1,42 @@
+# Response headers for Cloudflare Pages.
+#
+# The site itself no longer reads this file. It lives on GitHub Pages, which
+# sends no headers of its own, so the policy below travels in a `<meta
+# http-equiv>` tag instead: the text is the `CSP` export in src/data/site.js,
+# Head.astro puts it on the pages of this repository and the `head` option in
+# astro.config.mjs puts it on the Starlight pages under /docs. The two lists are
+# the same except for `frame-ancestors`, which a meta tag may not carry.
+#
+# The file stays here as the written record of what the old host sent, and as the
+# one place where `frame-ancestors 'none'` and the cache rule are still spelled
+# out. It ships into dist/, where GitHub ignores it; the Cloudflare project at
+# nerln.pages.dev now serves only scripts/redirect/, so it does not read it
+# either. If a custom domain ever goes behind a proxy that does read headers,
+# this is the policy to hand it.
+#
+# The site loads nothing from a third party: no fonts, no analytics, no badge
+# images, no tracking of any kind. Every asset comes from 'self'.
+#
+# One host sits beside 'self', and only in connect-src: api.github.com. The
+# pages that show repository counts ask it, from the reader's browser, for the
+# public repository list of github.com/nerln, and the home page also asks how
+# many pull requests are merged in ScrollPrize/villa. Both requests are
+# anonymous, read only, and send nothing about the reader. Both are optional:
+# every page is already complete and correct from the build data, and on a 403,
+# an offline reader or a slow answer nothing on the page changes. Turning
+# JavaScript off removes the requests and costs nothing but freshness.
+#
+# 'unsafe-inline' for scripts covers the theme script in Head.astro, which has to
+# run before paint to avoid a flash, and Starlight's own inline scripts.
+
+/*
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.github.com; object-src 'none'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), browsing-topics=()
+
+# Hashed build assets are immutable: the filename changes when the content does.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
