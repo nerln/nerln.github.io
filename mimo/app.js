@@ -182,7 +182,7 @@ function triggerCloneResponse() {
   const cloneReplies = [
     "Ma guarda che il problema non è il training in sé, è che se usi roba a caso ti ritrovi un modello che ripete sciocchezze. Su Apple Silicon gira in 15 secondi.",
     "Boh, secondo me state complicando la cosa: metti i turni in un jsonl, lancia lo script MPS e guarda scendere la loss.",
-    "Piuttosto controlla se Paranco ha liftato la cartella giusta in ~/.scriba/inbox, altrimenti siamo qua a parlare del nulla.",
+    "Piuttosto controlla se Paranco ha liftato la cartella giusta in ~/.mimo/inbox, altrimenti siamo qua a parlare del nulla.",
     "Sì ma chi se ne frega della crittografia se poi l'utente esporta lo zip delle chat a mano e lo dà in pasto a qualsiasi script Python?"
   ];
 
