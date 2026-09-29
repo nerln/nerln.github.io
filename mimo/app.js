@@ -1,4 +1,4 @@
-// La chat di mimo è in pausa. Questo file cancella soltanto quello che la
+// La chat di mimo è spenta. Questo file cancella soltanto quello che la
 // vecchia pagina aveva salvato in questo browser: il nome (mimo_username) e
 // le chiavi mimo_chat_*. Non tocca theme né altre chiavi, e non fa richieste.
 try {
